@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <title>DailyReportSystem</title>
+        <link rel="stylesheet" th:href="@{/css/employee/list.css}">
+    </head>
+         <body>
+            <h1>日報管理システムへようこそ</h1>
+            <h2>自分の日報　一覧</h2>
+             <form name="frm" method="post" th:action="@{/employee/list}">
+                <a th:href="@{/employee/register}">日報の新規登録</a>
+                <input type="submit" name="deleteRun" id="deleteRun" value="(選択)した日報を一括削除">
+                   <table>
+                        <tr>
+                            <th>選択</th>
+                            <th>ID</th>
+                            <th>名前</th>
+                            <th>登録日時</th>
+                            <th>更新日時</th>
+                            <th></th>
+                        </tr>
+                        <tr th:each="employee : ${employeelist}">
+                            <td class="center"><input type="checkbox" name="idck" th:value="${employee.id}"></td>
+                            <td th:text="${employee.id}"></td>
+                            <td th:text="${employee.name}"></td>
+                            <td th:text="${employee.created_at}"></td>
+                            <td th:text="${employee.updated_at}"></td>
+                            <td>
+                                <a th:href="@{/employee/update/{id}/(id=${employee.id})}">更新</a>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <script th:src="@{/js/employee/list.js}"></script>
+           </body>
+</html>
