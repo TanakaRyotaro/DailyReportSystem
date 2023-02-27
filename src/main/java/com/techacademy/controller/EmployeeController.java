@@ -35,7 +35,6 @@ public class EmployeeController {
     /** Employee登録画面を表示 */
     @GetMapping("/register")
     public String getRegister(@ModelAttribute Employee employee) {
-        // Employee登録画面に遷移
         return "employee/register";
     }
     /** Employee登録処理 */
@@ -53,15 +52,15 @@ public class EmployeeController {
     /** Employee更新画面を表示 */
     @GetMapping("/update/{id}/")
     public String getEmployee(@PathVariable("id") Integer id, Model model) {
+        Employee emp=service.getEmployee(id);
         // Modelに登録
-        model.addAttribute("employee", service.getEmployee(id));
+        model.addAttribute("employee", emp);
         // Employee更新画面に遷移
         return "employee/update";
     }
     /** Employee更新処理 */
     @PostMapping("/update/{id}/")
     public String postEmployee(Employee employee) {
-        employee.setCreated_at(new Date(new java.util.Date().getTime()));
         employee.setUpdated_at(new Date(new java.util.Date().getTime()));
         // Employee登録
         service.saveEmployee(employee);

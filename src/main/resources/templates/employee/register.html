@@ -7,17 +7,19 @@
 </head>
 <body>
     <h1>日報管理システムへようこそ</h1>
-    <h2>自分の日報　一覧</h2>
-    <form method="post" th:action="@{/employee/register}" th:object="${employee}">
+    <h2>日報登録</h2>
+    <form method="post" th:action="@{/employee/list}" th:object="${employee}">
+        <input type="hidden" id="id" name="id" th:value="*{id}" th:text="*{id}">
+        <br>
         <label for="name">名前</label>
-        <input type="text" th:field="*{name}">
+        <input type="text" th:field="*{name}" th:errorclass="err">
+         <span th:errors="*{name}" class="err"></span>
         <br>
-        <label for="created_at">登録日時</label>
-        <input type="text" th:field="*{created_at}">
         <br>
-        <label for="updated_at">更新日時</label>
-        <input type="text" th:field="*{updated_at}">
-        <br>
+        <input type="hidden" th:field="*{created_at}">
+
+        <input type="hidden" th:field="*{updated_at}">
+
         <input type="submit" value="登録実行">
         <a th:href="@{/employee/list}">登録せずに一覧に戻る</a>
     </form>
