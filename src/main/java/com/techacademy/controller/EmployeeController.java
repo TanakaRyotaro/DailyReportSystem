@@ -1,6 +1,8 @@
 package com.techacademy.controller;
 
 import org.springframework.stereotype.Controller;
+
+import java.sql.Date;
 import java.util.Set;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -59,6 +61,8 @@ public class EmployeeController {
     /** Employee更新処理 */
     @PostMapping("/update/{id}/")
     public String postEmployee(Employee employee) {
+        employee.setCreated_at(new Date(new java.util.Date().getTime()));
+        employee.setUpdated_at(new Date(new java.util.Date().getTime()));
         // Employee登録
         service.saveEmployee(employee);
         // 一覧画面にリダイレクト
