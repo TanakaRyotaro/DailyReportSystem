@@ -35,6 +35,8 @@ public class EmployeeController {
     /** Employee登録画面を表示 */
     @GetMapping("/register")
     public String getRegister(@ModelAttribute Employee employee) {
+
+        //Employee登録画面に遷移
         return "employee/register";
     }
     /** Employee登録処理 */
@@ -44,6 +46,7 @@ public class EmployeeController {
             // エラーあり
             return getRegister(employee);
         }
+
         // Employee登録
         service.saveEmployee(employee);
         // 一覧画面にリダイレクト
@@ -60,7 +63,11 @@ public class EmployeeController {
     }
     /** Employee更新処理 */
     @PostMapping("/update/{id}/")
-    public String postEmployee(Employee employee) {
+    public String postEmployee(@Validated Employee employee, BindingResult res, Model model) {
+        if(res.hasErrors()) {
+            //エラーあり
+            return "employee/update";
+        }
         employee.setUpdated_at(new Date(new java.util.Date().getTime()));
         // Employee登録
         service.saveEmployee(employee);

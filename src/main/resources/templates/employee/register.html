@@ -8,9 +8,7 @@
 <body>
     <h1>日報管理システムへようこそ</h1>
     <h2>日報登録</h2>
-    <form method="post" th:action="@{/employee/list}" th:object="${employee}">
-        <input type="hidden" id="id" name="id" th:value="*{id}" th:text="*{id}">
-        <br>
+    <form method="post" th:action="@{/employee/register}" th:object="${employee}">
         <label for="name">名前</label>
         <input type="text" th:field="*{name}" th:errorclass="err">
          <span th:errors="*{name}" class="err"></span>
