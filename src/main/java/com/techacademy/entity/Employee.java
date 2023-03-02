@@ -48,5 +48,6 @@ public class Employee {
     @Column(name = "updated_at", nullable = false)
     private Date updated_at;
 
-
+    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
+    private Authentication authentication;
 }

@@ -9,27 +9,23 @@
     <h1>従業員　新規登録ページ</h1>
     <form method="post" th:action="@{/employee/register}">
         <label for="authentication.employee_id">社員番号</label>
-        <input type="text" th:field="authentication.employee_id" th:errorclass="err">
-         <span th:errors="authentication.employee_id" class="err"></span>
+        <input type="text" th:field="authentication.employee_id">
         <br>
 
         <label for="employee.name">氏名</label>
-        <input type="text" th:field="employee.name" th:errorclass="err">
-         <span th:errors="employee.name" class="err"></span>
+        <input type="text" th:field="employee.name">
         <br>
 
         <label for="authentication.password">パスワード</label>
-        <input type="text" th:field="authentication.password" th:errorclass="err">
-         <span th:errors="authentication.password" class="err"></span>
+        <input type="text" th:field="authentication.password">
         <br>
 
         <label for="role">権限</label>
-        <select th:field="authentication.role" th:errorclass="err">
+        <select th:field="authentication.role">
             <option value="" th:text="選択してください" th:selected="${authentication.role == ''}">
             <option th:each="item:${T(com.techacademy.entity.Authentication.Role).values()}"
                     th:value="${item}" th:text="${item}" th:selected="authentication.role == ${item}">
         </select>
-        <span th:errors="authentication.role" class="err"></span>
         <br>
 
         <input type="submit" value="投稿">

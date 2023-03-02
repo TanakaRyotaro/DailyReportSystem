@@ -36,4 +36,6 @@ public class Authentication {
     @Column(name = "employee_id", nullable = false)
     private Integer employee_id;
 
+    @OneToOne(mappedBy = "authentication", cascade = CascadeType.ALL)
+    private Employee employee;
 }
