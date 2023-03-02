@@ -34,7 +34,7 @@ public class Authentication {
     private Role role;
     /** 従業員テーブルのID */
     @Column(name = "employee_id", nullable = false)
-    private Integer employee_id;
+    private int employee_id;
 
     @OneToOne(mappedBy = "authentication", cascade = CascadeType.ALL)
     private Employee employee;
