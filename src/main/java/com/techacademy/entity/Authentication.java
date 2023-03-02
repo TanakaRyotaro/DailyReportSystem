@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -36,6 +37,7 @@ public class Authentication {
     @Column(name = "employee_id", nullable = false)
     private int employee_id;
 
-    @OneToOne(mappedBy = "authentication", cascade = CascadeType.ALL)
+    @OneToOne
+    @JoinColumn(name = "employee_id",referencedColumnName="id",insertable = false, updatable = false)
     private Employee employee;
 }

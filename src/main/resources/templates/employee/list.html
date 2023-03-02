@@ -16,8 +16,8 @@
                             <th>操作</th>
                         </tr>
 
-                        <tr th:each="authentication : ${authenticationlist}">
-                            <td th:text="${authentication.code}"></td>
+                        <tr th:each="employee : ${employeelist}">
+                            <td th:text="${employee.code}"></td>
                         </tr>
 
                         <tr th:each="employee : ${employeelist}">
