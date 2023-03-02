@@ -23,16 +23,17 @@ public class Authentication {
     /** 主キー。自動生成 */
     /** 社員番号 */
     @Id
-    @Column(length = 20)
+    @Column(name = "code",length = 20, nullable = false)
     private String code;
     /** パスワード */
-    @Column(length = 255)
+    @Column(name = "password",length = 255, nullable = false)
     private String password;
     /** 権限 */
-    @Column(length = 10)
+    @Column(name = "role",length = 10, nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
     /** 従業員テーブルのID */
+    @Column(name = "employee_id", nullable = false)
     private Integer employee_id;
 
 }

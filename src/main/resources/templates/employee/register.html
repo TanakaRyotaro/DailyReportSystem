@@ -6,20 +6,34 @@
     <link rel="stylesheet" th:href="@{/css/employee/register.css}">
 </head>
 <body>
-    <h1>日報管理システムへようこそ</h1>
-    <h2>日報登録</h2>
-    <form method="post" th:action="@{/employee/register}" th:object="${employee}">
-        <label for="name">名前</label>
-        <input type="text" th:field="*{name}" th:errorclass="err">
-         <span th:errors="*{name}" class="err"></span>
+    <h1>従業員　新規登録ページ</h1>
+    <form method="post" th:action="@{/employee/register}">
+        <label for="authentication.employee_id">社員番号</label>
+        <input type="text" th:field="authentication.employee_id" th:errorclass="err">
+         <span th:errors="authentication.employee_id" class="err"></span>
         <br>
+
+        <label for="employee.name">氏名</label>
+        <input type="text" th:field="employee.name" th:errorclass="err">
+         <span th:errors="employee.name" class="err"></span>
         <br>
-        <input type="hidden" th:field="*{created_at}">
 
-        <input type="hidden" th:field="*{updated_at}">
+        <label for="authentication.password">パスワード</label>
+        <input type="text" th:field="authentication.password" th:errorclass="err">
+         <span th:errors="authentication.password" class="err"></span>
+        <br>
 
-        <input type="submit" value="登録実行">
-        <a th:href="@{/employee/list}">登録せずに一覧に戻る</a>
+        <label for="role">権限</label>
+        <select th:field="authentication.role" th:errorclass="err">
+            <option value="" th:text="選択してください" th:selected="${authentication.role == ''}">
+            <option th:each="item:${T(com.techacademy.entity.Authentication.Role).values()}"
+                    th:value="${item}" th:text="${item}" th:selected="authentication.role == ${item}">
+        </select>
+        <span th:errors="authentication.role" class="err"></span>
+        <br>
+
+        <input type="submit" value="投稿">
+        <a th:href="@{/employee/list}">一覧に戻る</a>
     </form>
 </body>
 </html>

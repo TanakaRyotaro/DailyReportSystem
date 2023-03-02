@@ -7,23 +7,32 @@
 </head>
 <body>
     <h1>日報管理システム</h1>
-    <h2>日報更新</h2>
-   <form method="post" th:action="@{/employee/update/{id}/(id=${employee.id})}" th:object="${employee}">
-        <label for="id">ID</label>
-        <input type="hidden" id="id" name="id" th:value="*{id}" th:text="*{id}">
+    <h2>"${employee.id}"の従業員情報 編集ページ</h2>
+    <h3>(パスワードは変更する場合のみ入力してください)</h3>
+   <form method="post" th:action="@{/employee/update/{id}/(id=${employee.id})}">
+        <label for="code">社員番号</label>
+        <input type="text" id="code" name="code" th:value="authentication.code" th:text="authentication.code" th:errorclass="err">
+        <span th:errors="authentication.code" class="err"></span>
         <br>
-        <label for="name">名前</label>
-        <input type="text" th:field="*{name}" th:errorclass="err">
-        <span th:errors="*{name}" class="err"></span>
 
-
-        <input type="hidden" th:field="*{created_at}">
-
-        <input type="hidden" th:field="*{updated_at}">
-
+        <label for="name">氏名</label>
+        <input type="text" th:field="employee.name" th:errorclass="err">
+        <span th:errors="employee.name" class="err"></span>
         <br>
-        <input type="submit" value="更新実行">
-        <a th:href="@{/employee/list}">更新せずに一覧に戻る</a>
+
+        <label for="password">パスワード</label>
+        <input type="text" th:field="authentication.password" th:errorclass="err">
+        <span th:errors="authentication.password" class="err"></span>
+        <br>
+
+        <label for="password">権限</label>
+        <input type="text" th:field="authentication.password" th:errorclass="err">
+        <span th:errors="authentication.password" class="err"></span>
+        <br>
+
+        <input type="submit" value="投稿">
+        <a th:href="@{/employee/list}">この従業員情報を削除する</a>
+        <a th:href="@{/employee/list}">一覧に戻る</a>
     </form>
 </body>
 </html>
