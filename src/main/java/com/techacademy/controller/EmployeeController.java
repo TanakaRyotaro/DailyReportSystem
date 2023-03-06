@@ -53,7 +53,7 @@ public class EmployeeController {
         return "redirect:/employee/list";
     }
     /** Employee更新画面を表示 */
-    @GetMapping("/update/{id}/")
+    @GetMapping("/update/{id}")
     public String getEmployee(@PathVariable("id") Integer id, Model model) {
         Employee emp=service.getEmployee(id);
         // Modelに登録
@@ -81,5 +81,14 @@ public class EmployeeController {
         service.deleteEmployee(idck);
         // 一覧画面にリダイレクト
         return "redirect:/employee/list";
+    }
+    /** Employee詳細を表示 */
+    @GetMapping("/detail/{id}")
+    public String getDetail(@PathVariable int id, Model model) {
+
+        // Modelに登録
+        model.addAttribute("emp",service.getEmployee(id));
+        // Employee更新画面に遷移
+        return "employee/detail";
     }
 }

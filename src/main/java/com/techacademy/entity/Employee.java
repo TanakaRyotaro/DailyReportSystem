@@ -28,7 +28,7 @@ public class Employee {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     /** 名前。20桁。null不許可 */
     @Column(name = "name", length = 20, nullable = false)
