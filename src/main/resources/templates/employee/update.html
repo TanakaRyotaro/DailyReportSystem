@@ -26,7 +26,12 @@
         <br>
         <label for="*{authentication.role}">権限</label>
         <br>
-        <input type="text">
+        <select th:field="*{authentication.role}">
+            <option value="" th:text="" th:selected="*{authentication.role == ''}">
+            <option th:each="item:${T(com.techacademy.entity.Employee.Authentication.Role).values()}"
+                    th:value="${item}" th:text="${item}" th:selected="*{authentication.role} == ${item}">
+        </select>
+
         <br>
         <br>
         <input type="submit" value="投稿">

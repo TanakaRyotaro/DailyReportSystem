@@ -25,8 +25,9 @@
                                 <br>
                         <label>更新日時</label>
                            <input type="text" th:field="${emp.updated_at}">
-              </form>
+            </form>
                 <a th:href="@{/employee/update/{aid}(aid=${emp.id})}">この従業員情報を編集する</a>
+                <br>
                 <a th:href="@{/employee/list}">一覧に戻る</a>
            </body>
 </html>
