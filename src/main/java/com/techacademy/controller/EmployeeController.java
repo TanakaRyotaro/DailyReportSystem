@@ -62,7 +62,7 @@ public class EmployeeController {
         return "employee/update";
     }
     /** Employee更新処理 */
-    @PostMapping("/update/{id}/")
+    @PostMapping("/update/{id}")
     public String postEmployee(@Validated Employee employee, BindingResult res, Model model) {
         if(res.hasErrors()) {
             //エラーあり

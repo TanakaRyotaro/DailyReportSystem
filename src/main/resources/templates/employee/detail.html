@@ -9,27 +9,24 @@
             <div id="header">
                 <h1>日報管理システム</h1>
             </div>
-            <h2>従業員情報 詳細ページ</h2>
+            <h2>id : ${emp.id}の従業員情報 詳細ページ</h2>
              <form method="post" th:action="@{/employee/detail}">
-                    <table>
-                        <tr>
-                            <th>社員番号</th>
-                            <th>氏名</th>
-                            <th>権限</th>
-                            <th>登録日時</th>
-                            <th>更新日時</th>
-                         </tr>
-
-                         <tr>
-                            <td th:text="${emp.authentication.code}"></td>
-                            <td th:text="${emp.name}"></td>
-                            <td th:text="${emp.authentication.role}"></td>
-                            <td th:text="${emp.created_at}"></td>
-                            <td th:text="${emp.updated_at}"></td>
-                         </tr>
-                    </table>
-               </form>
-                <a th:href="@{/employee/update/{aid}/(aid=${emp.id})}">この従業員情報を編集する</a>
+                        <label>社員番号</label>
+                           <input type="text" th:field="${emp.authentication.code}">
+                                <br>
+                        <label>氏名</label>
+                           <input type="text" th:field="${emp.name}">
+                                <br>
+                        <label>権限</label>
+                        　　<input type="text" th:field="${emp.authentication.role}">
+                                <br>
+                        <label>登録日時</label>
+                           <input type="text" th:field="${emp.created_at}">
+                                <br>
+                        <label>更新日時</label>
+                           <input type="text" th:field="${emp.updated_at}">
+              </form>
+                <a th:href="@{/employee/update/{aid}(aid=${emp.id})}">この従業員情報を編集する</a>
                 <a th:href="@{/employee/list}">一覧に戻る</a>
            </body>
 </html>
