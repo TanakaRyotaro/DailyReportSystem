@@ -26,9 +26,8 @@ import lombok.Data;
 public class Employee {
     /** 主キー。自動生成 */
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     /** 名前。20桁。null不許可 */
     @Column(name = "name", length = 20, nullable = false)
@@ -38,7 +37,7 @@ public class Employee {
 
     /** 削除フラグ */
     @Column(name = "delete_flag", nullable = false)
-    private Integer delete_flag;
+    private int delete_flag;
 
     /** 登録日時 */
     @Column(name = "created_at", nullable = false)
@@ -50,4 +49,5 @@ public class Employee {
 
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
     private Authentication authentication;
+
 }

@@ -41,12 +41,11 @@ public class EmployeeController {
     }
     /** Employee登録処理 */
     @PostMapping("/register")
-    public String postRegister(@Validated Employee employee, BindingResult res, Model model) {
+    public String postRegister(Employee employee, BindingResult res) {
         if(res.hasErrors()) {
-            // エラーあり
-            return getRegister(employee);
+            //エラーあり
+            return "employee/register";
         }
-
         // Employee登録
         service.saveEmployee(employee);
         // 一覧画面にリダイレクト
@@ -62,7 +61,7 @@ public class EmployeeController {
         return "employee/update";
     }
     /** Employee更新処理 */
-    @PostMapping("/update/{id}")
+    @PostMapping("/update/{id}/")
     public String postEmployee(@Validated Employee employee, BindingResult res, Model model) {
         if(res.hasErrors()) {
             //エラーあり

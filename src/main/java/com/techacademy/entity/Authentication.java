@@ -37,6 +37,7 @@ public class Authentication {
     private int employee_id;
 
     @OneToOne
-    @JoinColumn(name = "employee_id",referencedColumnName="id",insertable = false, updatable = false)
+    @JoinColumn(name = "employee_id",referencedColumnName="id",insertable = false,updatable = false)
     private Employee employee;
+
 }

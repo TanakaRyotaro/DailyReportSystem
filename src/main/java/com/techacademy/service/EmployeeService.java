@@ -1,10 +1,12 @@
 package com.techacademy.service;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Set;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.techacademy.entity.Authentication;
 import com.techacademy.entity.Employee;
 import com.techacademy.repository.EmployeeRepository;
 
@@ -30,6 +32,15 @@ public class EmployeeService {
     /** Employeeの登録を行う */
     @Transactional
     public Employee saveEmployee(Employee employee) {
+        employee.setCreated_at(new Date(new java.util.Date().getTime()));
+        employee.setDelete_flag(0);
+        employee.setUpdated_at(new Date(new java.util.Date().getTime()));
+        Authentication authentication = employee.getAuthentication();
+
+
+        System.out.println(authentication);
+        System.out.println(employee);
+
         return employeeRepository.save(employee);
     }
     /** Employeeの削除を行う */

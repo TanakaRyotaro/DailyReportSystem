@@ -9,7 +9,7 @@
     <div id="header">
         <h1>日報管理システム</h1>
     </div>
-    <h2>id　: ${employee.id}の従業員情報 編集ページ</h2>
+    <h2>従業員情報 編集ページ</h2>
     <h3>(パスワードは変更する場合のみ入力してください)</h3>
    <form method="post" th:action="@{/employee/update/{id}/(id=${employee.id})}" th:object="${employee}">
         <label for="*{authentication.code}">社員番号</label>
@@ -27,9 +27,9 @@
         <label for="*{authentication.role}">権限</label>
         <br>
         <select th:field="*{authentication.role}">
-            <option value="" th:text="" th:selected="*{authentication.role == ''}">
-            <option th:each="item:${T(com.techacademy.entity.Employee.Authentication.Role).values()}"
-                    th:value="${item}" th:text="${item}" th:selected="*{authentication.role} == ${item}">
+            <option value="" th:text="選択して下さい">
+            <option th:each="item:${T(com.techacademy.entity.Authentication.Role).values()}"
+                    th:value="${item}" th:text="${item}">
         </select>
 
         <br>
