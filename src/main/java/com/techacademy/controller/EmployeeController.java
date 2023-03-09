@@ -35,19 +35,18 @@ public class EmployeeController {
     /** Employee登録画面を表示 */
     @GetMapping("/register")
     public String getRegister(@ModelAttribute Employee employee) {
-
         //Employee登録画面に遷移
         return "employee/register";
     }
     /** Employee登録処理 */
     @PostMapping("/register")
-    public String postRegister(Employee employee, BindingResult res) {
+    public String postRegister(@Validated Employee employee, BindingResult res ,Model model) {
         if(res.hasErrors()) {
             //エラーあり
-            return "employee/register";
+            return getRegister(employee);
         }
         // Employee登録
-        service.saveEmployee(employee);
+        Employee e = service.saveEmployee(employee);
         // 一覧画面にリダイレクト
         return "redirect:/employee/list";
     }

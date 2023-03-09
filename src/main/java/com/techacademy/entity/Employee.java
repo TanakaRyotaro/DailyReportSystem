@@ -30,7 +30,7 @@ public class Employee {
     private int id;
 
     /** 名前。20桁。null不許可 */
-    @Column(name = "name", length = 20, nullable = false)
+    @Column(length = 20, nullable = false)
     @NotEmpty
     @Length(max=20)
     private String name;

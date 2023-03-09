@@ -36,6 +36,7 @@ public class EmployeeService {
         employee.setDelete_flag(0);
         employee.setUpdated_at(new Date(new java.util.Date().getTime()));
         Authentication authentication = employee.getAuthentication();
+        employee.setAuthentication(authentication);
 
 
         System.out.println(authentication);

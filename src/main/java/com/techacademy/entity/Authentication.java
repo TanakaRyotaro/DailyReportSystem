@@ -18,7 +18,7 @@ public class Authentication {
 
     /** 性別用の列挙型 */
     public static enum Role {
-        一般, 管理者
+    一般, 管理者
     }
     /** 主キー。自動生成 */
     /** 社員番号 */
@@ -33,11 +33,8 @@ public class Authentication {
     @Enumerated(EnumType.STRING)
     private Role role;
     /** 従業員テーブルのID */
-    @Column(name = "employee_id", nullable = false)
-    private int employee_id;
-
     @OneToOne
-    @JoinColumn(name = "employee_id",referencedColumnName="id",insertable = false,updatable = false)
+    @JoinColumn(name = "employee_id",referencedColumnName="id")
     private Employee employee;
 
 }
