@@ -44,6 +44,9 @@ public class EmployeeController {
     @PostMapping("/register")
     public String postRegister(Employee employee, BindingResult res ,Model model) {
         // Employee登録
+        employee.setDelete_flag(0);
+        employee.setCreatedAt(new Date(new java.util.Date().getTime()));
+        employee.setUpdatedAt(new Date(new java.util.Date().getTime()));
         service.saveEmployee(employee);
         // 一覧画面にリダイレクト
         return "redirect:/employee/list";
@@ -51,25 +54,32 @@ public class EmployeeController {
     /** Employee更新画面を表示 */
     @GetMapping("/update/{id}")
     public String getEmployee(@PathVariable("id") Integer id, Model model) {
-        Employee emp=service.getEmployee(id);
-        // Modelに登録
-        model.addAttribute("employee", emp);
-        // Employee更新画面に遷移
-        return "employee/update";
-    }
-    /** Employee更新処理 */
-    @PostMapping("/update/{id}/")
-    public String postEmployee(@Validated Employee employee, BindingResult res, Model model) {
-        if(res.hasErrors()) {
-            //エラーあり
+        if(id!=null) {
+            //Modelに登録
+            model.addAttribute("employee", service.getEmployee(id));
+            //Employee更新画面に遷移
+            return "employee/update";
+        } else {
+            model.addAttribute("employee", postEmployee(null, null, model, id));
             return "employee/update";
         }
-        employee.setUpdated_at(new Date(new java.util.Date().getTime()));
+    }
+    /** Employee更新処理 */
+    @PostMapping("/update/{id}")
+    public String postEmployee(@Validated Employee employee, BindingResult res, Model model, @PathVariable("id") Integer id) {
+        if(res.hasErrors()) {
+            //エラーあり
+            service.getEmployee(id);
+            return "employee/update";
+        }
+        employee.setCreatedAt(new Date(new java.util.Date().getTime()));
+        employee.setUpdatedAt(new Date(new java.util.Date().getTime()));
         // Employee登録
         service.saveEmployee(employee);
         // 一覧画面にリダイレクト
         return "redirect:/employee/list";
     }
+
     /** Employee削除処理 */
     @PostMapping(path="list", params="deleteRun")
     public String deleteRun(@RequestParam(name="idck") Set<Integer> idck, Model model) {
@@ -80,10 +90,9 @@ public class EmployeeController {
     }
     /** Employee詳細を表示 */
     @GetMapping("/detail/{id}")
-    public String getDetail(@PathVariable int id, Model model) {
-
+    public String getDetail(@PathVariable("id") Integer id, Model model) {
         // Modelに登録
-        model.addAttribute("emp",service.getEmployee(id));
+        model.addAttribute("employee", service.getEmployee(id));
         // Employee更新画面に遷移
         return "employee/detail";
     }

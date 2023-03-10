@@ -27,7 +27,7 @@ public class Employee {
     /** 主キー。自動生成 */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     /** 名前。20桁。null不許可 */
     @Column(length = 20, nullable = false)
@@ -41,11 +41,11 @@ public class Employee {
 
     /** 登録日時 */
     @Column(name = "created_at", nullable = false)
-    private Date created_at;
+    private Date createdAt;
 
     /** 更新日時 */
     @Column(name = "updated_at", nullable = false)
-    private Date updated_at;
+    private Date updatedAt;
 
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
     private Authentication authentication;

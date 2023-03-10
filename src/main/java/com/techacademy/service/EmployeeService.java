@@ -32,12 +32,8 @@ public class EmployeeService {
     /** Employeeの登録を行う */
     @Transactional
     public Employee saveEmployee(Employee employee) {
-        employee.setDelete_flag(0);
-        employee.setCreated_at(new Date(new java.util.Date().getTime()));
-        employee.setUpdated_at(new Date(new java.util.Date().getTime()));
         Authentication authentication = employee.getAuthentication();
         authentication.setEmployee(employee);
-
         return employeeRepository.save(employee);
     }
     /** Employeeの削除を行う */
