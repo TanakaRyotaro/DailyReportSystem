@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.techacademy.entity.Authentication;
 import com.techacademy.entity.Employee;
 import com.techacademy.service.EmployeeService;
 
@@ -40,13 +42,9 @@ public class EmployeeController {
     }
     /** Employee登録処理 */
     @PostMapping("/register")
-    public String postRegister(@Validated Employee employee, BindingResult res ,Model model) {
-        if(res.hasErrors()) {
-            //エラーあり
-            return getRegister(employee);
-        }
+    public String postRegister(Employee employee, BindingResult res ,Model model) {
         // Employee登録
-        Employee e = service.saveEmployee(employee);
+        service.saveEmployee(employee);
         // 一覧画面にリダイレクト
         return "redirect:/employee/list";
     }
