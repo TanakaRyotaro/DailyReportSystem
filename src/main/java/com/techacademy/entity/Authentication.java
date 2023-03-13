@@ -8,6 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
 
 import lombok.Data;
 
@@ -24,9 +27,13 @@ public class Authentication {
     /** 社員番号 */
     @Id
     @Column(name = "code",length = 20, nullable = false)
+    @Length(max=20)
+    @NotEmpty
     private String code;
     /** パスワード */
-    @Column(name = "password",length = 255, nullable = false)
+    @Column(name = "password", length = 255, nullable = false)
+    @Length(max=255)
+    @NotEmpty
     private String password;
     /** 権限 */
     @Column(name = "role",length = 10, nullable = false)

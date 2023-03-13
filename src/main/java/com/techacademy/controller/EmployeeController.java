@@ -3,7 +3,6 @@ package com.techacademy.controller;
 import org.springframework.stereotype.Controller;
 
 import java.sql.Date;
-import java.util.Set;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -12,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.techacademy.entity.Authentication;
 import com.techacademy.entity.Employee;
 import com.techacademy.service.EmployeeService;
 
@@ -42,7 +39,11 @@ public class EmployeeController {
     }
     /** Employee登録処理 */
     @PostMapping("/register")
-    public String postRegister(Employee employee, BindingResult res ,Model model) {
+    public String postRegister(@Validated Employee employee , BindingResult res ,Model model) {
+        if(res.hasErrors()) {
+            // エラーあり
+            return getRegister(employee);
+        }
         // Employee登録
         employee.setDelete_flag(0);
         employee.setCreatedAt(new Date(new java.util.Date().getTime()));
@@ -76,15 +77,6 @@ public class EmployeeController {
         employee.setUpdatedAt(new Date(new java.util.Date().getTime()));
         // Employee登録
         service.saveEmployee(employee);
-        // 一覧画面にリダイレクト
-        return "redirect:/employee/list";
-    }
-
-    /** Employee削除処理 */
-    @PostMapping(path="list", params="deleteRun")
-    public String deleteRun(@RequestParam(name="idck") Set<Integer> idck, Model model) {
-        // Employeeを一括削除
-        service.deleteEmployee(idck);
         // 一覧画面にリダイレクト
         return "redirect:/employee/list";
     }

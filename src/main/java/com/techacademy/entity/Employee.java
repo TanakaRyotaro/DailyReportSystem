@@ -10,18 +10,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.PreRemove;
 import javax.persistence.Table;
 
 
 import org.hibernate.annotations.Where;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.transaction.annotation.Transactional;
+
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "employee")
+@Where(clause = "delete_flag = 0")
 
 public class Employee {
     /** 主キー。自動生成 */
@@ -50,4 +53,12 @@ public class Employee {
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
     private Authentication authentication;
 
+    @PreRemove
+    @Transactional
+    private void preRemove() {
+        // 認証エンティティからemployeeを切り離す
+        if (authentication!=null) {
+            authentication.setEmployee(null);
+        }
+    }
 }
