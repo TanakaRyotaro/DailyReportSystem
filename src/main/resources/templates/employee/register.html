@@ -25,7 +25,7 @@
         <br>
         <label for="authentication.role">権限</label>
         <select th:field="*{authentication.role}">
-            <option value="" th:text="選択してください">
+            <option value="" th:text="選択してください" th:selected="${employee.authentication.code == ''}">
             <option th:each="item:${T(com.techacademy.entity.Authentication.Role).values()}"
                     th:value="${item}" th:text="${item}" th:selected="*{authentication.role} == ${item}">
         </select>

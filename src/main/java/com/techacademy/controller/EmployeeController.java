@@ -70,7 +70,7 @@ public class EmployeeController {
     public String postEmployee(@Validated Employee employee, BindingResult res, Model model, @PathVariable("id") Integer id) {
         if(res.hasErrors()) {
             //エラーあり
-            service.getEmployee(id);
+            model.addAttribute("employee",employee);
             return "employee/update";
         }
         employee.setCreatedAt(new Date(new java.util.Date().getTime()));
