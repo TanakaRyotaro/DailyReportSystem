@@ -2,7 +2,6 @@ package com.techacademy.controller;
 
 import org.springframework.stereotype.Controller;
 
-import java.sql.Date;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -26,10 +25,10 @@ public class EmployeeController {
     /** 一覧画面を表示 */
     @GetMapping("/list")
     public String getList(Model model) {
-        // 全件検索結果をModelに登録
-        model.addAttribute("employeelist",service.getEmployeeList());
-        // employee/list.htmlに画面遷移
-        return "employee/list";
+         // 全件検索結果をModelに登録
+            model.addAttribute("employeelist",service.getEmployeeList());
+         // employee/list.htmlに画面遷移
+            return "employee/list";
     }
     /** Employee登録画面を表示 */
     @GetMapping("/register")
@@ -51,20 +50,20 @@ public class EmployeeController {
     }
     /** Employee更新画面を表示 */
     @GetMapping("/update/{id}")
-    public String getEmployee(@PathVariable("id") Integer id, Model model) {
+    public String getUpdate(@PathVariable("id") Integer id, Model model) {
         if(id!=null) {
             //Modelに登録
             model.addAttribute("employee", service.getEmployee(id));
             //Employee更新画面に遷移
             return "employee/update";
         } else {
-            model.addAttribute("employee", postEmployee(null, null, model, id));
+            model.addAttribute("employee", postUpdate(null, null, model, id));
             return "employee/update";
         }
     }
     /** Employee更新処理 */
     @PostMapping("/update/{id}")
-    public String postEmployee(@Validated Employee employee, BindingResult res, Model model, @PathVariable("id") Integer id) {
+    public String postUpdate(@Validated Employee employee, BindingResult res, Model model, @PathVariable("id") Integer id) {
         if(res.hasErrors()) {
             //エラーあり
             model.addAttribute("employee",employee);
@@ -82,5 +81,12 @@ public class EmployeeController {
         model.addAttribute("employee", service.getEmployee(id));
         // Employee更新画面に遷移
         return "employee/detail";
+    }
+    /** Employee削除処理 */
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") Integer id, Model model) {
+        //ユーザー情報の削除
+        service.delete(id);
+        return "redirect:/employee/list";
     }
 }

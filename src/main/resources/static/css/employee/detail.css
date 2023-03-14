@@ -1,8 +1,5 @@
 @charset "UTF-8";
 
-table td{
-    border-collapse: collapse;
-}
 
 #header {
     width: 100%;
@@ -22,9 +19,6 @@ label{
     display: inline-block;
     width: 8em;
     line-height: 150%;
-}
-.err {
-    color: red;
 }
 
 th, td {

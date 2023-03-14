@@ -2,7 +2,6 @@ package com.techacademy.service;
 
 import java.sql.Date;
 import java.util.List;
-import java.util.Set;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,11 +37,14 @@ public class EmployeeService {
         authentication.setEmployee(employee);
         return employeeRepository.save(employee);
     }
+
+    public Employee findById(Integer id) {
+        return employeeRepository.findById(id).get();
+    }
     /** Employeeの削除を行う */
     @Transactional
-    public void deleteEmployee(Set<Integer> idck) {
-        for(Integer id : idck) {
-            employeeRepository.deleteById(id);
+    public void delete(Integer id) {
+            Employee employee = findById(id);
+            employeeRepository.delete(employee);
         }
     }
-}
