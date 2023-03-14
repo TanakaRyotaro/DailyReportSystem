@@ -11,24 +11,27 @@
     </div>
     <h2>従業員情報 編集ページ</h2>
     <h3>(パスワードは変更する場合のみ入力してください)</h3>
-   <form method="post" th:action="@{/employee/update/{aid}(aid=${employee.id})}">
+   <form method="post" th:action="@{/employee/update/{aid}(aid=${employee.id})}" th:object="${employee}">
         <label>社員番号</label>
-        <input type="text" th:field="${employee.authentication.code}">
+        <input type="text" th:field="*{authentication.code}" th:errorclass="err">
+        <span th:errors="*{authentication.code}" class="err"></span>
         <br>
         <label>氏名</label>
-        <input type="text" th:field="${employee.name}">
+        <input type="text" th:field="*{name}" th:errorclass="err">
+        <span th:errors="*{name}" class="err"></span>
         <br>
         <label>パスワード</label>
-        <input type="text" th:field="${employee.authentication.password}">
+        <input type="text" th:field="*{authentication.password}" th:errorclass="err">
+        <span th:errors="*{authentication.password}" class="err"></span>
         <br>
         <label>権限</label>
         <br>
-        <select th:field="${employee.authentication.role}">
-            <option value="" th:text="選択して下さい">
+        <select th:field="*{authentication.role}" th:errorclass="err">
+            <option value="" th:text="選択して下さい" th:selected="${employee.authentication.role == ''}">
             <option th:each="item:${T(com.techacademy.entity.Authentication.Role).values()}"
-                    th:value="${item}" th:text="${item}">
+                    th:value="${item}" th:text="${item}" th:selected="${employee.authentication.role} == ${item}">
         </select>
-
+        <span th:errors="*{authentication.role}" class="err"></span>
         <br>
         <br>
         <input type="submit" value="投稿">

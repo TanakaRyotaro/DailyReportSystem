@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.Valid;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -16,6 +16,7 @@ import lombok.Data;
 
 @Data
 @Entity
+
 @Table(name = "authentication")
 public class Authentication {
 
@@ -28,16 +29,18 @@ public class Authentication {
     @Id
     @Column(name = "code",length = 20, nullable = false)
     @Length(max=20)
-    @NotEmpty
+
     private String code;
     /** パスワード */
     @Column(name = "password", length = 255, nullable = false)
+    @Length(min=4)
     @Length(max=255)
-    @NotEmpty
+
     private String password;
     /** 権限 */
     @Column(name = "role",length = 10, nullable = false)
     @Enumerated(EnumType.STRING)
+
     private Role role;
     /** 従業員テーブルのID */
     @OneToOne

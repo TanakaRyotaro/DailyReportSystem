@@ -45,9 +45,6 @@ public class EmployeeController {
             return getRegister(employee);
         }
         // Employee登録
-        employee.setDelete_flag(0);
-        employee.setCreatedAt(new Date(new java.util.Date().getTime()));
-        employee.setUpdatedAt(new Date(new java.util.Date().getTime()));
         service.saveEmployee(employee);
         // 一覧画面にリダイレクト
         return "redirect:/employee/list";
@@ -73,8 +70,6 @@ public class EmployeeController {
             model.addAttribute("employee",employee);
             return "employee/update";
         }
-        employee.setCreatedAt(new Date(new java.util.Date().getTime()));
-        employee.setUpdatedAt(new Date(new java.util.Date().getTime()));
         // Employee登録
         service.saveEmployee(employee);
         // 一覧画面にリダイレクト

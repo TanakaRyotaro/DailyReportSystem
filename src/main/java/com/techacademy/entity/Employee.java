@@ -10,14 +10,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.PreRemove;
+
 import javax.persistence.Table;
 
 
 import org.hibernate.annotations.Where;
+
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.transaction.annotation.Transactional;
+
 
 import lombok.Data;
 
@@ -51,14 +53,7 @@ public class Employee {
     private Date updatedAt;
 
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
+    @Valid
     private Authentication authentication;
 
-    @PreRemove
-    @Transactional
-    private void preRemove() {
-        // 認証エンティティからemployeeを切り離す
-        if (authentication!=null) {
-            authentication.setEmployee(null);
-        }
-    }
 }

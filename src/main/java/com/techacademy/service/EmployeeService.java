@@ -28,10 +28,12 @@ public class EmployeeService {
     public Employee getEmployee(Integer id) {
         return employeeRepository.findById(id).get();
     }
-
     /** Employeeの登録を行う */
     @Transactional
     public Employee saveEmployee(Employee employee) {
+        employee.setDelete_flag(0);
+        employee.setCreatedAt(new Date(new java.util.Date().getTime()));
+        employee.setUpdatedAt(new Date(new java.util.Date().getTime()));
         Authentication authentication = employee.getAuthentication();
         authentication.setEmployee(employee);
         return employeeRepository.save(employee);
