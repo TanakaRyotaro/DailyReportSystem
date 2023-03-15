@@ -10,6 +10,9 @@
             <h1>日報管理システム</h1>
            </div>
             <h2>従業員  一覧</h2>
+            <form method="post" th:action="@{/logout}">
+                <input type="submit" value="ログアウト">
+            </form><br>
              <form name="frm" method="post" th:action="@{/employee/list}">
                    <table>
                         <tr>

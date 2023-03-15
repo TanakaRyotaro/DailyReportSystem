@@ -29,11 +29,11 @@ public class Authentication {
     @Id
     @Column(name = "code",length = 20, nullable = false)
     @Length(max=20)
-
     private String code;
+
     /** パスワード */
     @Column(name = "password", length = 255, nullable = false)
-    @Length(min=4)
+    @Length(min=8)
     @Length(max=255)
 
     private String password;
