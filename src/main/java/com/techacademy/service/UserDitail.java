@@ -2,25 +2,31 @@ package com.techacademy.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import org.springframework.security.core.GrantedAuthority;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import com.techacademy.entity.Employee;
 
 public class UserDitail implements UserDetails {
     private static final long serialVersionUID = 1L;
-
+    //employeeオブジェクト
     private final Employee employee;
-    private final Collection<? extends GrantedAuthority> authorities;
+    //ユーザー権限情報
+    private final Collection<? extends SimpleGrantedAuthority> authorities;
 
     public UserDitail(Employee employee) {
         this.employee = employee;
-        this.authorities = new ArrayList<GrantedAuthority>();
+        this.authorities = new ArrayList<SimpleGrantedAuthority>();
     }
-    public Employee getEmployee() {
+    public Employee getUser() {
         return employee;
     }
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+    public Collection<? extends SimpleGrantedAuthority> getAuthorities() {
         return authorities;
     }
     @Override

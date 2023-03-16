@@ -8,8 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.Valid;
-
 import org.hibernate.validator.constraints.Length;
 
 import lombok.Data;
@@ -18,6 +16,7 @@ import lombok.Data;
 @Entity
 
 @Table(name = "authentication")
+
 public class Authentication {
 
     /** 性別用の列挙型 */

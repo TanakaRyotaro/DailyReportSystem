@@ -3,8 +3,29 @@
 <head>
     <meta charset="utf-8">
     <title>日報管理システム</title>
-</head>
-<body>
-    <h1>日報管理システム</h1>
-</body>
+    <link rel="stylesheet" th:href="@{/css/list.css}">
+    </head>
+         <body>
+         　<div id="header">
+            <h1>日報管理システム　従業員管理　日報管理</h1>
+           </div>
+            <h2>日報管理システムへようこそ</h2>
+            <h3>自分の日報　一覧</h3>
+            <form method="post" th:action="@{/logout}">
+                <input type="submit" value="ログアウト">
+            </form><br>
+             <form name="frm" method="post" th:action="@{/employee/list}">
+                   <table>
+                        <tr>
+                            <th>氏名</th>
+                            <th>日付</th>
+                            <th>タイトル</th>
+                            <th>操作</th>
+                        </tr>
+
+                     </table>
+                    <a th:href="@{/employee/register}">新規従業員の登録</a>
+                </form>
+                <script th:src="@{/js/employee/list.js}"></script>
+           </body>
 </html>
