@@ -18,8 +18,8 @@ public class UserDetailService implements UserDetailsService{
         this.authenticationRepository = repository;
     }
     @Override
-    public UserDetails loadUserByUsername(String code) throws UsernameNotFoundException {
-        Optional<Authentication> authentication = authenticationRepository.findById(code);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<Authentication> authentication = authenticationRepository.findById(username);
         if (!authentication.isPresent()) {
             throw new UsernameNotFoundException("Exception:Username Not Found");
         }

@@ -52,4 +52,14 @@ public class Employee {
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
     @Valid
     private Authentication authentication;
+
+    /** レコードが削除される前に行なう処理 */
+    @PreRemove
+    @Transactional
+    private void preRemove() {
+        // 認証エンティティからuserを切り離す
+        if (authentication!=null) {
+            authentication.setEmployee(null);
+        }
+    }
 }
