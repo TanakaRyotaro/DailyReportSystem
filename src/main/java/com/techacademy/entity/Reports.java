@@ -1,19 +1,19 @@
 package com.techacademy.entity;
 
 import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-
 import org.hibernate.validator.constraints.Length;
-
 import lombok.Data;
-
 @Data
 @Entity
 @Table(name = "reports")
@@ -23,21 +23,26 @@ public class Reports {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    /** 日報を登録した従業員の従業員テーブルでのID */
-    private String employee_id;
-
     /** 日報日付 */
+    @Column(name = "report_date", nullable = false)
     private Date report_date;
 
     /** 日報タイトル */
+    @Column(length = 255, nullable = false)
+    @NotEmpty
+    @Length(max=255)
     private String title;
 
     /** 日報内容 */
+    @Column(name = "content", nullable = false)
     private String content;
 
     /** 登録日付 */
-    private Date created_at;
+    @Column(name = "created_at", nullable = false)
+    private Date createdAt;
 
     /** 更新日付 */
-    private Date updated_at;
+    @Column(name = "updated_at", nullable = false)
+    private Date updatedAt;
+
 }

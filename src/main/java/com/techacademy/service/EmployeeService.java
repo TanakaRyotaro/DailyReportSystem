@@ -2,6 +2,9 @@ package com.techacademy.service;
 
 import java.sql.Date;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,7 +15,8 @@ import com.techacademy.repository.EmployeeRepository;
 @Service
 public class EmployeeService {
     private final EmployeeRepository employeeRepository;
-
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     public EmployeeService(EmployeeRepository repository) {
         this.employeeRepository = repository;
     }
@@ -34,6 +38,7 @@ public class EmployeeService {
         employee.setCreatedAt(new Date(new java.util.Date().getTime()));
         employee.setUpdatedAt(new Date(new java.util.Date().getTime()));
         Authentication authentication = employee.getAuthentication();
+        authentication.setPassword(passwordEncoder.encode(authentication.getPassword()));
         authentication.setEmployee(employee);
         return employeeRepository.save(employee);
     }

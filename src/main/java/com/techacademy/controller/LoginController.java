@@ -7,6 +7,7 @@ public class LoginController {
     //** ログイン画面を表示 */
     @GetMapping("/login")
     public String getLogin() {
+
         // login.htmlに画面遷移
         return "login";
     }
