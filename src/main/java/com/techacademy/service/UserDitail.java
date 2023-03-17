@@ -4,29 +4,31 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.techacademy.entity.Employee;
 
 public class UserDitail implements UserDetails {
+
     private static final long serialVersionUID = 1L;
     //employeeオブジェクト
     private final Employee employee;
     //ユーザー権限情報
-    private final Collection<? extends SimpleGrantedAuthority> authorities;
+    private final List<SimpleGrantedAuthority> authorities;
 
     public UserDitail(Employee employee) {
         this.employee = employee;
-        this.authorities = new ArrayList<SimpleGrantedAuthority>();
+        List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
+        authorities.add(new SimpleGrantedAuthority(employee.getAuthentication().getRole().toString()));
+        this.authorities = authorities;
     }
     public Employee getUser() {
         return employee;
     }
     @Override
     public Collection<? extends SimpleGrantedAuthority> getAuthorities() {
+
         return authorities;
     }
     @Override
