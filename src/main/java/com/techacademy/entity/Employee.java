@@ -2,6 +2,7 @@ package com.techacademy.entity;
 
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,16 +10,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PreRemove;
 import javax.persistence.Table;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.transaction.annotation.Transactional;
 
 import lombok.Data;
 
@@ -54,7 +52,8 @@ public class Employee {
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
     @Valid
     private Authentication authentication;
-
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    private List<Reports> reports;
     /** レコードが削除される前に行なう処理 */
 
 }

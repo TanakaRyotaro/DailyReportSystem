@@ -39,6 +39,8 @@ public class EmployeeService {
         employee.setUpdatedAt(new Date(new java.util.Date().getTime()));
         Authentication authentication = employee.getAuthentication();
         authentication.setPassword(passwordEncoder.encode(authentication.getPassword()));
+
+
         authentication.setEmployee(employee);
         return employeeRepository.save(employee);
     }

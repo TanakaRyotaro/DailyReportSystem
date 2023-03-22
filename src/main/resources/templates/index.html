@@ -7,14 +7,15 @@
     </head>
          <body>
          　<div id="header">
-            <h1>日報管理システム　従業員管理</h1>
+            <h1>日報管理システム　従業員管理 </h1>
            </div>
             <h2>日報管理システムへようこそ</h2>
             <h3>[自分の日報　一覧]</h3>
             <form method="post" th:action="@{/logout}">
                 <input type="submit" value="ログアウト">
-            </form><br>
-             <form name="frm" method="post" th:action="@{/employee/list}">
+            </form>
+            <br>
+             <form name="frm" method="post" th:action="@{/index}">
                    <table>
                         <tr>
                             <th>氏名</th>
@@ -22,14 +23,14 @@
                             <th>タイトル</th>
                             <th>操作</th>
                         </tr>
-                        <tr th:each="employee : ${employeelist}">
-                            <td th:text="${employee.name}"></td>
-                            <td th:text="${employee.createdAt}"></td>
-                            <td></td>
-                            <td><a th:href="@{/employee/detail/{aid}(aid=${employee.id})}">詳細を見る</a></td>
+                        <tr th:each="reports : ${reportslist}">
+                            <td th:text="${reports.employee.name}"></td>
+                            <td th:text="${reports.report_date}"></td>
+                            <td th:text="${reports.title}"></td>
+                            <td>詳細を見る</td>
                         </tr>
-                   </table>
-                    <a th:href="@{/employee/register}">新規従業員の登録</a>
-             </form>
+                     </table>
+                    <a th:href="@{/entry}">新規従業員の登録</a>
+              </form>
            </body>
 </html>

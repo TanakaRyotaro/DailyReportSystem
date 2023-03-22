@@ -11,3 +11,5 @@ INSERT INTO authentication(code, password, role, employee_id)
 VALUES ("ktaro","$2a$08$clh9XaYYznpX9WDqySgiCuUu4znpSeu2oJi5l2Q00UJs42Llrbd7S","管理者", 3);
 INSERT INTO authentication(code, password, role, employee_id)
 VALUES ("ttaro","$2a$08$mHD4bywlc7kvdWGTGZ1gVOmVU.CGtHeSnOGk.j2UsZAvEiw61wdUG","一般", 4);
+
+INSERT INTO reports(report_date, title, content, created_at, updated_at ,employee_id) VALUES (CURRENT_TIMESTAMP,"新規タイトル", "日報新規内容", CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 4);
