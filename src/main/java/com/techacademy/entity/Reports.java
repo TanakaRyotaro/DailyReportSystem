@@ -30,7 +30,6 @@ public class Reports  {
 
     /** 日報タイトル */
     @Column(length = 255, nullable = false)
-    @NotEmpty
     @Length(max=255)
     private String title;
 
@@ -50,6 +49,4 @@ public class Reports  {
     @ManyToOne
     @JoinColumn(name = "employee_id",referencedColumnName="id")
     private Employee employee;
-
-
 }

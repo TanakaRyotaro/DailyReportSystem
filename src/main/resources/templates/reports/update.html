@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>日報管理システム</title>
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    </head>
+         <body>
+         　<div id="header">
+            <h1>日報管理システム　従業員管理 </h1>
+           </div>
+            <h2>日報　編集ページ</h2>
+             <form method="post" th:action="@{reports/entry}" th:object="${reports}">
+                <label>日　　付</label>
+                <input type="date" th:field="*{report_date}" th:errorclass="err">
+                <span th:errors="*{report_date}" class="err"></span>
+                 <br>
+                <br>
+                <label>氏　　名</label>
+                <input type="text" th:field="*{employee.name}" th:errorclass="err" readonly>
+                <br>
+                <br>
+                <label>タイトル</label>
+                <input type="text" th:field="*{title}" th:errorclass="err">
+                <span th:errors="*{title}" class="err"></span>
+                <br>
+                <br>
+                <label>内　　容</label>
+                <input type="text" th:field="*{content}" th:errorclass="err">
+                <span th:errors="*{content}" class="err"></span>
+                <br>
+                <br>
+                <input type="submit" value="投稿">
+                <br>
+                <a th:href="@{/}">一覧に戻る</a>
+            </form>
+           </body>
+</html>

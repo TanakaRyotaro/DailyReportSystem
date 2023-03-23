@@ -3,22 +3,21 @@
  <head>
     <meta charset="UTF-8">
     <title>DailyReportSystem</title>
-    <link rel="stylesheet" th:href="@{/css/entry.css}">
+    <link rel="stylesheet" th:href="@{/css/reports/entry.css}">
  </head>
  <body>
     <div id="header">
         <h1>日報管理システム</h1>
     </div>
         <h2>日報　新規登録ページ</h2>
-    <form method="post" th:action="@{/entry}" th:object="${reports}">
+    <form method="post" th:action="@{/reports/entry}" th:object="${reports}">
          <label>日　　付</label>
          <input type="date" th:field="*{report_date}" th:errorclass="err">
          <span th:errors="*{report_date}" class="err"></span>
          <br>
          <br>
          <label>氏　　名</label>
-         <input type="text" th:field="*{employee.name}" th:errorclass="err">
-         <span th:errors="*{employee.name}" class="err"></span>
+         <input type="text" th:field="*{employee.name}" th:errorclass="err" readonly>
          <br>
          <br>
          <label>タイトル</label>
@@ -33,7 +32,7 @@
          <br>
          <input type="submit" value="投稿">
          <br>
-         <a th:href="@{/}">一覧に戻る</a>
+         <a th:href="@{/reports/list}">一覧に戻る</a>
     </form>
  </body>
 </html>

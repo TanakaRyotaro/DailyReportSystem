@@ -39,6 +39,7 @@ public class UserDitail implements UserDetails {
     public String getUsername() {
         return employee.getAuthentication().getCode();
     }
+
     @Override
     public boolean isAccountNonExpired() {
         //ユーザーが期限切れでなければtrueを返す

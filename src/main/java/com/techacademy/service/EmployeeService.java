@@ -40,7 +40,6 @@ public class EmployeeService {
         Authentication authentication = employee.getAuthentication();
         authentication.setPassword(passwordEncoder.encode(authentication.getPassword()));
 
-
         authentication.setEmployee(employee);
         return employeeRepository.save(employee);
     }
