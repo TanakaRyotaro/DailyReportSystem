@@ -10,7 +10,7 @@
                 <h1>日報管理システム</h1>
             </div>
             <h2>従業員情報 詳細ページ</h2>
-                       <form method="post" th:action="@{/reports/detail/{id}}" th:object="${reports}">
+                       <form method="post" th:action="@{/reports/detail}" th:object="${reports}">
                             <label>氏　　名</label>
                             <input type="text" th:field="*{employee.name}" th:errorclass="err">
 
@@ -35,6 +35,6 @@
                        </form>
                     <a>この日報を編集する</a>
                     <br>
-                    <a th:href="@{/}">一覧に戻る</a>
+                    <a th:href="@{/reports/list}">一覧に戻る</a>
        </body>
 </html>

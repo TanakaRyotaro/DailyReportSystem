@@ -47,7 +47,7 @@ public class ReportsController {
         }
         reports.setEmployee(user.getUser());
         // reports登録
-        service.saveReports(reports);
+        model.addAttribute("reports",service.saveReports(reports));
         // 一覧画面にリダイレクト
         return "redirect:/reports/list";
     }
@@ -79,10 +79,8 @@ public class ReportsController {
     }
     /** Reports詳細を表示 */
     @GetMapping("/detail/{id}")
-    public String getDetail(@PathVariable("id") Integer id, Model model) {
-
-
-       //  Modelに登録
+    public String getDetail(@ModelAttribute Reports reports, @PathVariable("id") Integer id, Model model,@AuthenticationPrincipal UserDitail user) {
+        reports.setEmployee(user.getUser());
         model.addAttribute("reports",service.getReports(id));
         // reports詳細画面に遷移
         return "reports/detail";

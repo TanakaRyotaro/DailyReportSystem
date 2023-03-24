@@ -15,7 +15,7 @@ public class IndexController {
         this.service = service;
     }
     @GetMapping("/")
-    public String getIndex(@AuthenticationPrincipal UserDitail user,Model model) {
+    public String getIndex(@AuthenticationPrincipal UserDitail user,Model model,Integer id) {
 
         model.addAttribute("reportslist",service.getReportsList());
         // index.htmlに画面遷移
