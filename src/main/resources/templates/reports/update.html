@@ -6,11 +6,16 @@
     <link rel="stylesheet" th:href="@{/css/index.css}">
     </head>
          <body>
-         　<div id="header">
-            <h1>日報管理システム　従業員管理 </h1>
-           </div>
+            <div id="header">
+                <h1>日報管理システム　従業員管理 </h1>
+                <a th:href="@{employee/list}">従業員管理</a>
+                <a th:href="@{reports/list}">日報管理</a>
+            </div>
             <h2>日報　編集ページ</h2>
-             <form method="post" th:action="@{reports/entry}" th:object="${reports}">
+            <form method="post" th:action="@{/logout}">
+                <input type="submit" value="ログアウト">
+            </form><br>
+             <form method="post" th:action="@{/reports/update/{aid}(aid=${reports.id})}" th:object="${reports}">
                 <label>日　　付</label>
                 <input type="date" th:field="*{report_date}" th:errorclass="err">
                 <span th:errors="*{report_date}" class="err"></span>
@@ -32,7 +37,7 @@
                 <br>
                 <input type="submit" value="投稿">
                 <br>
-                <a th:href="@{/}">一覧に戻る</a>
+                <a th:href="@{/reports/list}">一覧に戻る</a>
             </form>
            </body>
 </html>

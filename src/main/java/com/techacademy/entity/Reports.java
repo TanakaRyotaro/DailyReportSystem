@@ -29,13 +29,16 @@ public class Reports  {
     private Date report_date;
 
     /** 日報タイトル */
-    @Column(length = 255, nullable = false)
-    @Length(max=255)
+    @Column(name = "title",length = 20, nullable = false)
+    @Length(max=20)
+    @NotEmpty
     private String title;
 
     /** 日報内容 */
-    @Column(name = "content", nullable = false)
+    @Column(name = "content",length = 20, nullable = false)
     @Type(type="text")
+    @Length(max=20)
+    @NotEmpty
     private String content;
 
     /** 登録日付 */

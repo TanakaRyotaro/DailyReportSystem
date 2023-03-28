@@ -53,34 +53,38 @@ public class ReportsController {
     }
     /** Reports更新画面を表示 */
     @GetMapping("/update/{id}")
-    public String getUpdate(@PathVariable("id") Integer id, Model model) {
+    public String getUpdate(@PathVariable("id") Integer id, Model model,@AuthenticationPrincipal UserDitail user,@ModelAttribute Reports reports) {
         if(id!=null) {
             //Modelに登録
+            reports.setEmployee(user.getUser());
             model.addAttribute("reports", service.getReports(id));
             //reports更新画面に遷移
             return "reports/update";
         } else {
-            model.addAttribute("reports", postUpdate(null, null, model, id));
+            reports.setEmployee(user.getUser());
+            model.addAttribute("reports", postUpdate(null, null, model, id ,null));
             return "reports/update";
         }
     }
     /** Reports更新処理 */
     @PostMapping("/update/{id}")
-    public String postUpdate(@Validated Reports reports, BindingResult res, Model model, @PathVariable("id") Integer id) {
+    public String postUpdate(@Validated Reports reports, BindingResult res, Model model, @PathVariable("id") Integer id,@AuthenticationPrincipal UserDitail user) {
         if(res.hasErrors()) {
             //エラーあり
+            reports.setEmployee(user.getUser());
             model.addAttribute("reports",reports);
             return "reports/update";
         }
         // reports登録
+        reports.setEmployee(user.getUser());
         service.saveReports(reports);
         // 一覧画面にリダイレクト
         return "redirect:/reports/list";
     }
     /** Reports詳細を表示 */
     @GetMapping("/detail/{id}")
-    public String getDetail(@ModelAttribute Reports reports, @PathVariable("id") Integer id, Model model,@AuthenticationPrincipal UserDitail user) {
-        reports.setEmployee(user.getUser());
+    public String getDetail(@ModelAttribute Reports reports, @PathVariable("id") Integer id, Model model) {
+
         model.addAttribute("reports",service.getReports(id));
         // reports詳細画面に遷移
         return "reports/detail";

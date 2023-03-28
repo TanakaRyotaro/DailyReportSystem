@@ -7,7 +7,9 @@
     </head>
          <body>
          　<div id="header">
-            <h1>日報管理システム</h1>
+                <h1>日報管理システム</h1>
+                <a th:href="@{employee/list}">従業員管理</a>
+                <a th:href="@{/}">日報管理</a>
            </div>
             <h2>日報  一覧</h2>
             <form method="post" th:action="@{/logout}">
@@ -26,7 +28,7 @@
                             <td th:text="${reports.employee.name}"></td>
                             <td th:text="${reports.report_date}"></td>
                             <td th:text="${reports.title}"></td>
-                            <td><a th:href="@{/reports/detail/{aid}(aid=${reports.employee.id})}">詳細を見る</a></td>
+                            <td><a th:href="@{/reports/detail/{aid}(aid=${reports.id})}">詳細を見る</a></td>
                         </tr>
                     </table>
                     <a th:href="@{/reports/entry}">新規従業員の登録</a>

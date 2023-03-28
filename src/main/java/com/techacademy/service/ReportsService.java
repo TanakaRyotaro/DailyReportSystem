@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.techacademy.entity.Reports;
 import com.techacademy.repository.ReportsRepository;
 
@@ -25,12 +26,14 @@ public class ReportsService {
     public Reports getReports(Integer id) {
         return reportsRepository.findById(id).get();
     }
+    public List<Reports> findByEmployee(UserDitail user){
+        return reportsRepository.findByEmployee(user.getUser());
+    }
     /** Reportsの登録を行う */
     @Transactional
     public Reports saveReports(Reports reports) {
         reports.setCreatedAt(new Date(new java.util.Date().getTime()));
         reports.setUpdatedAt(new Date(new java.util.Date().getTime()));
-
         return reportsRepository.save(reports);
     }
 }
