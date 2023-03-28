@@ -26,12 +26,12 @@
 
                         <tr th:each="reports : ${reportslist}">
                             <td th:text="${reports.employee.name}"></td>
-                            <td th:text="${reports.report_date}"></td>
+                            <td th:text="${reports.reportDate}"></td>
                             <td th:text="${reports.title}"></td>
                             <td><a th:href="@{/reports/detail/{aid}(aid=${reports.id})}">詳細を見る</a></td>
                         </tr>
                     </table>
-                    <a th:href="@{/reports/entry}">新規従業員の登録</a>
+                    <a th:href="@{/reports/entry}">新規日報の登録</a>
                 </form>
                 <script th:src="@{/js/list.js}"></script>
            </body>

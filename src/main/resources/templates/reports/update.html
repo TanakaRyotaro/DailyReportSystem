@@ -17,8 +17,8 @@
             </form><br>
              <form method="post" th:action="@{/reports/update/{aid}(aid=${reports.id})}" th:object="${reports}">
                 <label>日　　付</label>
-                <input type="date" th:field="*{report_date}" th:errorclass="err">
-                <span th:errors="*{report_date}" class="err"></span>
+                <input type="date" th:field="*{reportDate}" th:errorclass="err">
+                <span th:errors="*{reportDate}" class="err"></span>
                  <br>
                 <br>
                 <label>氏　　名</label>
@@ -31,7 +31,7 @@
                 <br>
                 <br>
                 <label>内　　容</label>
-                <input type="text" th:field="*{content}" th:errorclass="err">
+                <textarea th:field="*{content}" th:errorclass="err"></textarea>
                 <span th:errors="*{content}" class="err"></span>
                 <br>
                 <br>

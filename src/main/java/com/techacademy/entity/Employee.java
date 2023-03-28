@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 
@@ -43,10 +44,12 @@ public class Employee {
 
     /** 登録日時 */
     @Column(name = "created_at", nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date createdAt;
 
     /** 更新日時 */
     @Column(name = "updated_at", nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date updatedAt;
 
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)

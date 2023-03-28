@@ -12,8 +12,8 @@
         <h2>日報　新規登録ページ</h2>
     <form method="post" th:action="@{/reports/entry}" th:object="${reports}">
          <label>日　　付</label>
-         <input type="date" th:field="*{report_date}" th:errorclass="err">
-         <span th:errors="*{report_date}" class="err"></span>
+         <input type="date" th:field="*{reportDate}" th:errorclass="err">
+         <span th:errors="*{reportDate}" class="err"></span>
          <br>
          <br>
          <label>氏　　名</label>
