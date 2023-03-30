@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.techacademy.entity.Employee;
 import com.techacademy.entity.Reports;
 import com.techacademy.repository.ReportsRepository;
 
@@ -26,6 +27,7 @@ public class ReportsService {
     public Reports getReports(Integer id) {
         return reportsRepository.findById(id).get();
     }
+
     public List<Reports> findByEmployee(UserDitail user){
         return reportsRepository.findByEmployee(user.getUser());
     }

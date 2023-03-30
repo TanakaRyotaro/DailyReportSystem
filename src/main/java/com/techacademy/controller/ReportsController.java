@@ -1,5 +1,7 @@
 package com.techacademy.controller;
 
+import java.util.List;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.techacademy.entity.Employee;
 import com.techacademy.entity.Reports;
 import com.techacademy.service.ReportsService;
 import com.techacademy.service.UserDitail;
@@ -26,8 +29,10 @@ public class ReportsController {
     /** 一覧画面を表示 */
     @GetMapping("/list")
     public String getList(Model model) {
+        List<Reports> userlist=service.getReportsList();
          // 全件検索結果をModelに登録
-            model.addAttribute("reportslist",service.getReportsList());
+            model.addAttribute("reportslist",userlist);
+            model.addAttribute("reportsCount",userlist.size());
          // reports/list.htmlに画面遷移
             return "reports/list";
     }
@@ -70,12 +75,11 @@ public class ReportsController {
     @PostMapping("/update/{id}")
     public String postUpdate(@Validated Reports reports, BindingResult res, Model model, @PathVariable("id") Integer id,@AuthenticationPrincipal UserDitail user) {
         if(res.hasErrors()) {
-            //エラーあり
             reports.setEmployee(user.getUser());
             model.addAttribute("reports",reports);
             return "reports/update";
         }
-        // reports登録
+     // reports登録
         reports.setEmployee(user.getUser());
         service.saveReports(reports);
         // 一覧画面にリダイレクト
@@ -83,8 +87,10 @@ public class ReportsController {
     }
     /** Reports詳細を表示 */
     @GetMapping("/detail/{id}")
-    public String getDetail(@ModelAttribute Reports reports, @PathVariable("id") Integer id, Model model) {
-
+    public String getDetail(@ModelAttribute Reports reports, @PathVariable("id") Integer id, Model model, @AuthenticationPrincipal UserDitail user) {
+        reports.setEmployee(user.getUser());
+        model.addAttribute("report",reports);
+        model.addAttribute("user",user);
         model.addAttribute("reports",service.getReports(id));
         // reports詳細画面に遷移
         return "reports/detail";

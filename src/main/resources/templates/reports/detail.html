@@ -8,8 +8,8 @@
        <body>
             <div id="header">
                 <h1>日報管理システム</h1>
-                <a th:href="@{employee/list}">従業員管理</a>
-                <a th:href="@{reports/list}">日報管理</a>
+                <a th:href="@{/employee/list}">従業員管理</a>
+                <a th:href="@{/reports/list}">日報管理</a>
             </div>
             <h2>日報 詳細ページ</h2>
                 <form method="post" th:action="@{/logout}">
@@ -37,9 +37,8 @@
                                     <br>
                             <label>更新日時</label>
                                <input type="text" th:field="*{updatedAt}" th:errorclass="err" readonly>
-
                        </form>
-                    <a th:href="@{/reports/update/{aid}(aid=${reports.id})}">この日報を編集する</a>
+                    <p th:if="${report.employee.id} == ${reports.employee.id}"><a th:href="@{/reports/update/{aid}(aid=${reports.id})}">この日報を編集する</a></p>
                     <br>
                     <a th:href="@{/reports/list}">一覧に戻る</a>
        </body>

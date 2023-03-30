@@ -1,5 +1,7 @@
 package com.techacademy.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
@@ -25,8 +27,10 @@ public class EmployeeController {
     /** 一覧画面を表示 */
     @GetMapping("/list")
     public String getList(Model model) {
+            List<Employee> userlist = service.getEmployeeList();
          // 全件検索結果をModelに登録
-            model.addAttribute("employeelist",service.getEmployeeList());
+            model.addAttribute("employeelist",userlist);
+            model.addAttribute("employeeCount",userlist.size());
          // employee/list.htmlに画面遷移
             return "employee/list";
     }

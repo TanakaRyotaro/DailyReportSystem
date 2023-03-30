@@ -32,6 +32,7 @@
                             <td><a th:href="@{/reports/detail/{aid}(aid=${reports.id})}">詳細を見る</a></td>
                         </tr>
                      </table>
+                     <p>（全[[${reportsCount}]]件）</p>
                     <a th:href="@{reports/entry}">新規日報の登録</a>
               </form>
            </body>

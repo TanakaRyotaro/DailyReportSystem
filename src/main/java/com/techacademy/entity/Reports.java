@@ -54,7 +54,7 @@ public class Reports  {
     @Column(name = "updated_at", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date updatedAt;
-    /** 従業員テーブルのID */
+
     @ManyToOne
     @JoinColumn(name = "employee_id",referencedColumnName="id")
     private Employee employee;

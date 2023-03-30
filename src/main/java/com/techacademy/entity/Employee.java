@@ -57,6 +57,5 @@ public class Employee {
     private Authentication authentication;
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     private List<Reports> reports;
-    /** レコードが削除される前に行なう処理 */
 
 }

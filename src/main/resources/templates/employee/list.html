@@ -27,8 +27,9 @@
                             <td><a th:href="@{/employee/detail/{aid}(aid=${employee.id})}">詳細を見る</a></td>
                         </tr>
                     </table>
+                    <p>（全[[${employeeCount}]]件）</p>
                     <a th:href="@{/employee/register}">新規従業員の登録</a>
                 </form>
-                <script th:src="@{/js/list.js}"></script>
+
            </body>
 </html>
