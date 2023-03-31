@@ -12,20 +12,20 @@
             <h2>従業員情報 詳細ページ</h2>
                        <form method="post" th:action="@{/employee/detail}">
                             <label>社員番号</label>
-                               <input type="text" th:field="${employee.authentication.code}">
+                               <input type="text" style="display:inline" th:field="${employee.authentication.code}">
                                     <br>
                             <label>氏名</label>
-                               <input type="text" th:field="${employee.name}">
+                               <input type="text" style="display:inline" th:field="${employee.name}">
                                     <br>
                             <label>権限</label>
-                            　　<input type="text" th:field="${employee.authentication.role}">
+                            　　<input type="text" style="display:inline" th:field="${employee.authentication.role}">
                                     <br>
                             <label>登録日時</label>
-                               <input type="text" th:field="${employee.createdAt}">
+                               <input type="text" style="display:inline" th:field="${employee.createdAt}">
 
                                     <br>
                             <label>更新日時</label>
-                               <input type="text" th:field="${employee.updatedAt}">
+                               <input type="text" style="display:inline" th:field="${employee.updatedAt}">
                        </form>
                     <a th:href="@{/employee/update/{aid}(aid=${employee.id})}">この従業員情報を編集する</a>
                     <br>

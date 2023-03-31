@@ -17,29 +17,35 @@
                 </form><br>
                        <form method="post" th:action="@{/reports/detail}" th:object="${reports}">
                             <label>氏　　名</label>
-                            <input type="text" th:field="*{employee.name}" th:errorclass="err" readonly>
+                            <br>
+                            <input type="text" th:field="*{employee.name}" th:errorclass="err" style="display:inline" readonly>
 
                             <br>
                             <label>日　　付</label>
-                            <input type="date" th:field="*{reportDate}" th:errorclass="err" readonly>
+                            <br>
+                            <input type="date" th:field="*{reportDate}" th:errorclass="err" style="display:inline" readonly>
 
                             <br>
                             <label>タイトル</label>
-                            <input type="text" th:field="*{title}" th:errorclass="err" readonly>
+                            <br>
+                            <input type="text" th:field="*{title}" th:errorclass="err" style="display:inline" readonly>
 
                             <br>
-                            <label>内　　容</label>
-                            <input type="text" th:field="*{content}" th:errorclass="err" readonly>
+                            <label for="message">内　　容</label>
+                            <br>
+                            <textarea id="message" name="message" th:field="*{content}" th:errorclass="err" cols="50" rows="10" style="display:inline" readonly></textarea>
 
                             <br>
                             <label>登録日時</label>
-                               <input type="text" th:field="*{createdAt}" th:errorclass="err" readonly>
+                            <br>
+                               <input type="text" th:field="*{createdAt}" th:errorclass="err" style="display:inline" readonly>
                                     <br>
                             <label>更新日時</label>
-                               <input type="text" th:field="*{updatedAt}" th:errorclass="err" readonly>
+                            <br>
+                               <input type="text" th:field="*{updatedAt}" th:errorclass="err" style="display:inline" readonly>
                        </form>
                     <p th:if="${report.employee.id} == ${reports.employee.id}"><a th:href="@{/reports/update/{aid}(aid=${reports.id})}">この日報を編集する</a></p>
-                    <br>
+
                     <a th:href="@{/reports/list}">一覧に戻る</a>
        </body>
 </html>
