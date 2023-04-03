@@ -33,8 +33,8 @@ public class ReportsService {
     /** Reportsの登録を行う */
     @Transactional
     public Reports saveReports(Reports reports) {
-        reports.setCreatedAt(new Date(new java.util.Date().getTime()));
-        reports.setUpdatedAt(new Date(new java.util.Date().getTime()));
+        reports.setCreatedAt(new Date(System.currentTimeMillis()));
+        reports.setUpdatedAt(new Date(System.currentTimeMillis()));
         return reportsRepository.save(reports);
     }
 }

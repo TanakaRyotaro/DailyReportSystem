@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -46,7 +47,7 @@ public class Reports  {
     private String content;
 
     /** 登録日付 */
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at", nullable = false,updatable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date createdAt;
 
@@ -58,4 +59,9 @@ public class Reports  {
     @ManyToOne
     @JoinColumn(name = "employee_id",referencedColumnName="id")
     private Employee employee;
+
+    @PreUpdate
+    public void onPreUpdate() {
+        setUpdatedAt(new Date(System.currentTimeMillis()));
+    }
 }

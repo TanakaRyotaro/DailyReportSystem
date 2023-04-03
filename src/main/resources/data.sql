@@ -1,7 +1,7 @@
-INSERT INTO employee(name, created_at, updated_at, delete_flag) VALUES ("A001", CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 0);
-INSERT INTO employee(name, created_at, updated_at, delete_flag) VALUES ("0123", CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 0);
-INSERT INTO employee(name, created_at, updated_at, delete_flag) VALUES ("ktaro", CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 0);
-INSERT INTO employee(name, created_at, updated_at, delete_flag) VALUES ("ttaro", CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 0);
+INSERT INTO employee(name, created_at, updated_at, delete_flag) VALUES ("A001",CURRENT_TIMESTAMP,CURRENT_TIMESTAMP, 0);
+INSERT INTO employee(name, created_at, updated_at, delete_flag) VALUES ("0123",CURRENT_TIMESTAMP,CURRENT_TIMESTAMP, 0);
+INSERT INTO employee(name, created_at, updated_at, delete_flag) VALUES ("ktaro",CURRENT_TIMESTAMP,CURRENT_TIMESTAMP, 0);
+INSERT INTO employee(name, created_at, updated_at, delete_flag) VALUES ("ttaro",CURRENT_TIMESTAMP,CURRENT_TIMESTAMP, 0);
 
 INSERT INTO authentication(code, password, role, employee_id)
 VALUES ("A001", "$2a$08$clh9XaYYznpX9WDqySgiCuUu4znpSeu2oJi5l2Q00UJs42Llrbd7S", "管理者", 1);

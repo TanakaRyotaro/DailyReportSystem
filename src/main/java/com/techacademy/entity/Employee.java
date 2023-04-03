@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 import javax.validation.Valid;
@@ -42,7 +43,7 @@ public class Employee {
     private int delete_flag;
 
     /** 登録日時 */
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at", nullable = false,updatable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date createdAt;
 
@@ -57,4 +58,8 @@ public class Employee {
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     private List<Reports> reports;
 
+    @PreUpdate
+    public void onPreUpdate() {
+        setUpdatedAt(new Date(System.currentTimeMillis()));
+    }
 }

@@ -35,8 +35,8 @@ public class EmployeeService {
     @Transactional
     public Employee saveEmployee(Employee employee) {
         employee.setDelete_flag(0);
-        employee.setCreatedAt(new Date(new java.util.Date().getTime()));
-        employee.setUpdatedAt(new Date(new java.util.Date().getTime()));
+        employee.setCreatedAt(new Date(System.currentTimeMillis()));
+        employee.setUpdatedAt(new Date(System.currentTimeMillis()));
         Authentication authentication = employee.getAuthentication();
         authentication.setPassword(passwordEncoder.encode(authentication.getPassword()));
 
