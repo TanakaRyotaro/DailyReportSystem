@@ -1,4 +1,4 @@
-package com.techacademy;
+package com.techacademy.controller;
 
 import org.apache.catalina.connector.Connector;
 import org.apache.coyote.ajp.AjpNio2Protocol;
